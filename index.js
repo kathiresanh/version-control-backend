@@ -6,7 +6,13 @@ var cors = require('cors')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const secret = "abcfghk79685";
-app.use(cors())
+let options = {
+    origin:"*",
+    credentials: true,
+}
+
+app.use(cors(options))
+
 const mongodb = require("mongodb");
 const mongoClient = mongodb.MongoClient;
 require('dotenv').config({ path: './secure.env' })
@@ -187,4 +193,4 @@ app.put("/forgot-password",async function(req,res){
 
 })
 
-app.listen(3001, () => { console.log("server listening on port 3001") })
+app.listen(process.env.PORT || 3003)
